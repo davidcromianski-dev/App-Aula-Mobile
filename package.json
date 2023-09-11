@@ -1,7 +1,7 @@
 {
-  "name": "argon-react-native",
+  "name": "uceff-app-2023-2",
   "version": "1.9.0",
-  "description": "Argon React Native, based on Argon Design System. Coded by Creative Tim",
+  "description": "An app build by the Uceff Students",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",

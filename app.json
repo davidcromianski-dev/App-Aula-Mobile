@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Argon FREE React Native",
-    "slug": "argon-free-react-native",
+    "name": "Uceff Students App",
+    "slug": "uceff-app-2023-2",
     "privacy": "public",
     "platforms": [
       "ios",
@@ -24,6 +24,14 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "Argon React Native, based on Argon Design System. Coded by Creative Tim"
+    "description": "Argon React Native, based on Argon Design System. Coded by Creative Tim",
+    "extra": {
+      "eas": {
+        "projectId": "f36fbf68-0214-4315-8f13-93ae524e3598"
+      }
+    },
+    "android": {
+      "package": "com.guilherme.piasson.uceffapp20232"
+    }
   }
 }

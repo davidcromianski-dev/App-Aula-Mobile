@@ -4,6 +4,7 @@ import { Camera } from 'expo-camera';
 import { FontAwesome } from '@expo/vector-icons';
 
 export default function App(){
+
     const camRef = useRef(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [hasPermission, setHasPermission] = useState(null);
@@ -32,10 +33,10 @@ export default function App(){
             if(camRef){
                 const data = await camRef.current.takePictureAsync();
                 setCapturedPhoto(data.uri);
-                console.log(capturedPhoto);
+                //console.log(capturedPhoto);
                 setOpen(true);
                 //console.log(data);
-                //console.log(data.uri);
+                console.log(data);
             }
         }catch(error){
             console.log(error);
@@ -53,7 +54,8 @@ export default function App(){
                     <TouchableOpacity style={{
                         position:'absolute', 
                         bottom : 20, 
-                        left : 20}} onPress={ () => {
+                        left : 20}} 
+                        onPress={ () => {
                             setType ( 
                                 type === Camera.Constants.Type.back 
                                 ? Camera.Constants.Type.front 
