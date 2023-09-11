@@ -207,6 +207,14 @@ export default function OnboardingStack(props) {
         headerShown: false,
       }}
     >
+
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Onboarding"
         component={Onboarding}
@@ -256,7 +264,7 @@ function AppStack(props) {
           fontWeight: "normal",
         },
       }}
-      initialRouteName="Home"
+      initialRouteName="Register"
     >
       <Drawer.Screen
         name="Home"

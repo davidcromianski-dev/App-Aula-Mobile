@@ -41,7 +41,7 @@ class Onboarding extends React.Component {
                 </Block>
                 <Block style={styles.subTitle}>
                   <Text color="white" size={16}>
-                    Aula 1
+                    Aula 2
                   </Text>
                 </Block>
               </Block>

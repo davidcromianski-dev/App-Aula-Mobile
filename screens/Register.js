@@ -8,12 +8,63 @@ import {
 } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 
 const { width, height } = Dimensions.get("screen");
 
 class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
+  handleEmailChange = (text) => {
+    this.setState({ email: text }); // Update the email state when the input changes
+  };
+
+  handlePasswordChange = (text) => {
+    this.setState({ password: text }); // Update the password state when the input changes
+  };
+
+  handleLogin = async () => {
+    const { email, password } = this.state;
+
+    try {
+      const response = await fetch('https://dummyjson.com/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email, // Use the entered email as the username
+          password,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+
+      // Handle the API response here, e.g., store authentication token, navigate to the next screen, etc.
+      console.log('API Response:', responseData);
+
+      this.props.navigation.navigate('Onboarding');
+
+    } catch (error) {
+      // Handle any errors here
+      console.error('API Error:', error);
+    }
+  };
+
   render() {
     return (
       <Block flex middle>
@@ -26,7 +77,7 @@ class Register extends React.Component {
             <Block style={styles.registerContainer}>
               <Block flex={0.25} middle style={styles.socialConnect}>
                 <Text color="#8898AA" size={12}>
-                  Sign up with
+                  Efetue o Login com
                 </Text>
                 <Block row style={{ marginTop: theme.SIZES.BASE }}>
                   <Button style={{ ...styles.socialButtons, marginRight: 30 }}>
@@ -58,7 +109,7 @@ class Register extends React.Component {
               <Block flex>
                 <Block flex={0.17} middle>
                   <Text color="#8898AA" size={12}>
-                    Or sign up the classic way
+                    Ou através do seu e-mail e sua senha
                   </Text>
                 </Block>
                 <Block flex center>
@@ -70,22 +121,8 @@ class Register extends React.Component {
                     <Block width={width * 0.8} style={{ marginBottom: 15 }}>
                       <Input
                         borderless
-                        placeholder="Name"
-                        iconContent={
-                          <Icon
-                            size={16}
-                            color={argonTheme.COLORS.ICON}
-                            name="hat-3"
-                            family="ArgonExtra"
-                            style={styles.inputIcons}
-                          />
-                        }
-                      />
-                    </Block>
-                    <Block width={width * 0.8} style={{ marginBottom: 15 }}>
-                      <Input
-                        borderless
                         placeholder="Email"
+                        onChangeText={this.handleEmailChange} // Update email state on input change
                         iconContent={
                           <Icon
                             size={16}
@@ -102,6 +139,7 @@ class Register extends React.Component {
                         password
                         borderless
                         placeholder="Password"
+                        onChangeText={this.handlePasswordChange} // Update password state on input change
                         iconContent={
                           <Icon
                             size={16}
@@ -112,39 +150,12 @@ class Register extends React.Component {
                           />
                         }
                       />
-                      <Block row style={styles.passwordCheck}>
-                        <Text size={12} color={argonTheme.COLORS.MUTED}>
-                          password strength:
-                        </Text>
-                        <Text bold size={12} color={argonTheme.COLORS.SUCCESS}>
-                          {" "}
-                          strong
-                        </Text>
-                      </Block>
                     </Block>
-                    <Block row width={width * 0.75}>
-                      <Checkbox
-                        checkboxStyle={{
-                          borderWidth: 3
-                        }}
-                        color={argonTheme.COLORS.PRIMARY}
-                        label="I agree with the"
-                      />
-                      <Button
-                        style={{ width: 100 }}
-                        color="transparent"
-                        textStyle={{
-                          color: argonTheme.COLORS.PRIMARY,
-                          fontSize: 14
-                        }}
-                      >
-                        Privacy Policy
-                      </Button>
-                    </Block>
+                    
                     <Block middle>
-                      <Button color="primary" style={styles.createButton}>
+                      <Button color="primary" style={styles.createButton} onPress={this.handleLogin}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>
-                          CREATE ACCOUNT
+                          Login
                         </Text>
                       </Button>
                     </Block>
