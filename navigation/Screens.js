@@ -11,6 +11,7 @@ import Elements from "../screens/Elements";
 // screens
 import Home from "../screens/Home";
 import Onboarding from "../screens/Onboarding";
+import NovaTela from "../screens/NovaTela";
 import Pro from "../screens/Pro";
 import Profile from "../screens/Profile";
 import React from "react";
@@ -218,6 +219,13 @@ export default function OnboardingStack(props) {
       <Stack.Screen
         name="Onboarding"
         component={Onboarding}
+        option={{
+          headerTransparent: true,
+        }}
+      />
+      <Stack.Screen
+        name="Nova Tela"
+        component={NovaTela}
         option={{
           headerTransparent: true,
         }}

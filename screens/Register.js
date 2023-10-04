@@ -4,7 +4,8 @@ import {
   ImageBackground,
   Dimensions,
   StatusBar,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  Linking
 } from "react-native";
 import { Block, Checkbox, Text, theme } from "galio-framework";
 
@@ -48,9 +49,10 @@ class Register extends React.Component {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+      // Validação do login
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! Status: ${response.status}`);
+      // }
 
       const responseData = await response.json();
 
@@ -151,7 +153,12 @@ class Register extends React.Component {
                         }
                       />
                     </Block>
-                    
+                    <Block flex={0.17} middle>
+                      <Text color="#8898AA" size={12} onPress={() => { 
+                          Linking.openURL("https://permita.me/?q=Esqueci+minha+senha%2C+o+que+eu+fa%C3%A7o+agora%3F");
+                        }}>Esqueci minha senha
+                      </Text>
+                    </Block>
                     <Block middle>
                       <Button color="primary" style={styles.createButton} onPress={this.handleLogin}>
                         <Text bold size={14} color={argonTheme.COLORS.WHITE}>

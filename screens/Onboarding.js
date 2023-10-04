@@ -12,6 +12,7 @@ const { height, width } = Dimensions.get("screen");
 
 import argonTheme from "../constants/Theme";
 import Images from "../constants/Images";
+import { Icon } from "../components";
 
 class Onboarding extends React.Component {
   render() {
@@ -26,21 +27,16 @@ class Onboarding extends React.Component {
             style={{ height, width, zIndex: 1 }}
           />
         </Block>
-        <Block flex space="between" style={styles.padded}>
-            <Block flex space="around" style={{ zIndex: 2 }}>
+        <Block flex center style={styles.padded}>
+            <Block flex center style={{ zIndex: 2, gap: 40 }}>
               <Block style={styles.title}>
                 <Block>
-                  <Text color="white" size={60}>
-                    Uceff 
-                  </Text>
-                </Block>
-                <Block>
-                  <Text color="white" size={60}>
-                    Mobile
+                  <Text center color="white" size={30}>
+                    Desenvolvimento Mobile
                   </Text>
                 </Block>
                 <Block style={styles.subTitle}>
-                  <Text color="white" size={16}>
+                  <Text center color="white" size={15}>
                     Aula 2
                   </Text>
                 </Block>
@@ -53,6 +49,14 @@ class Onboarding extends React.Component {
                   textStyle={{ color: argonTheme.COLORS.BLACK }}
                 >
                   Camera
+                </Button>
+                <Button
+                  style={styles.button}
+                  color={"green"}
+                  onPress={() => navigation.navigate("Nova Tela")}
+                  textStyle={{ color: argonTheme.COLORS.BLACK }}
+                >
+                  Aula 3
                 </Button>
               </Block>
           </Block>
